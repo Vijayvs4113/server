@@ -6,6 +6,30 @@ const User = require('../models/user');
 const router = express.Router();
 
 // Register
+/**
+ * @swagger
+ * /register:
+ *   post:
+ *     summary: Register a new user
+ *     tags: [Auth]
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               username:
+ *                 type: string
+ *               email:
+ *                 type: string
+ *               password:
+ *                 type: string
+ *     responses:
+ *       200:
+ *         description: User registered successfully
+ */
+
 router.post('/register', async (req, res) => {
   try {
     const { username, email, password } = req.body;
@@ -19,6 +43,34 @@ router.post('/register', async (req, res) => {
 });
 
 // Login
+/**
+ * @swagger
+ * /login:
+ *   post:
+ *     summary: Login a user
+ *     tags: [Auth]
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               email:
+ *                 type: string
+ *               password:
+ *                 type: string
+ *     responses:
+ *       200:
+ *         description: User logged in successfully
+ *       400:
+ *         description: Invalid credentials
+ *       404:
+ *         description: User not found
+ *       500:
+ *         description: Internal server error
+ */
+
 router.post('/login', async (req, res) => {
   try {
     const { email, password } = req.body;
